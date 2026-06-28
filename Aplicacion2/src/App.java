@@ -11,6 +11,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
 
 public class App extends Application {
     public static void main(String[] args) throws Exception {
@@ -110,9 +112,30 @@ public class App extends Application {
 
         formulario.add(contenedorBotones, 0, 8, 2, 1);
 
-        root.getChildren().addAll(contenedorTitulo, formulario);
+        root.setPadding(new Insets(10));
 
-        Scene scene = new Scene(root, 630, 550);
+        TableView tablaProducto = new TableView();
+
+        TableColumn columnaCodigo = new TableColumn("Código");
+        TableColumn columnaProducto = new TableColumn("Producto");
+        TableColumn columnaCategoria = new TableColumn("Categoría");
+        TableColumn columnaPrecio = new TableColumn("Precio");
+        TableColumn columnaCantidad = new TableColumn("Cantidad");
+        TableColumn columnaEstado = new TableColumn("Estado");
+
+        tablaProducto.getColumns().add(columnaCodigo);
+        tablaProducto.getColumns().add(columnaProducto);
+        tablaProducto.getColumns().add(columnaCategoria);
+        tablaProducto.getColumns().add(columnaPrecio);
+        tablaProducto.getColumns().add(columnaCantidad);
+        tablaProducto.getColumns().add(columnaEstado);
+
+        tablaProducto.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
+        tablaProducto.setPrefHeight(180);
+
+        root.getChildren().addAll(contenedorTitulo, formulario, tablaProducto);
+
+        Scene scene = new Scene(root, 630, 580);
 
         primaryStage.setTitle("Sistema de Inventario");
         primaryStage.setScene(scene);
