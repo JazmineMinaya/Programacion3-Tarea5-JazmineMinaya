@@ -135,7 +135,7 @@ public class App extends Application {
 
         root.getChildren().addAll(contenedorTitulo, formulario, tablaProducto);
 
-        Scene scene = new Scene(root, 630, 580);
+        Scene scene = new Scene(root, 650, 580);
 
         primaryStage.setTitle("Sistema de Inventario");
         primaryStage.setScene(scene);
