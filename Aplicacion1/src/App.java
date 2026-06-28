@@ -12,6 +12,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
 
 public class App extends Application {
     public static void main(String[] args) throws Exception {
@@ -27,35 +29,36 @@ public class App extends Application {
         formulario.setHgap(10);
         formulario.setVgap(10);
 
+        Label titulo = new Label("Registro de Visitantes");
+        titulo.setStyle("-fx-font-size:14px; -fx-fonx-weight:bold;");
+        
+        HBox contenedorTitulo = new HBox();
+        contenedorTitulo.setAlignment(Pos.CENTER);
+        contenedorTitulo.getChildren().add(titulo);
+
         Label labelNombre = new Label("Nombre:");
         TextField nombre = new TextField();
         nombre.setPromptText("Jazmine Minaya Peralta");
-        nombre.setMaxWidth(375);
 
         Label labelCedula = new Label("Cédula:");
         TextField cedula = new TextField();
         cedula.setPromptText("001-1234567-8");
-        cedula.setMaxWidth(375);
 
         Label labelTelefono = new Label("Teléfono:");
         TextField telefono = new TextField();
         telefono.setPromptText("809 000 0000");
-        telefono.setMaxWidth(375);
 
         Label labelMotivoVisita = new Label("Motivo de la Visita:");
         TextField motivoVisita = new TextField();
         motivoVisita.setPromptText("Escriba el motivo de su visita");
-        motivoVisita.setMaxWidth(375);
 
         Label labelPersonaVisitar = new Label("Persona a Visitar:");
         TextField personaVisitar = new TextField();
         personaVisitar.setPromptText("Melody Santos Acevedo");
-        personaVisitar.setMaxWidth(375);
 
         Label labelFecha = new Label("Fecha:");
         TextField fecha = new TextField();
         fecha.setPromptText("DD/MM/AAAA");
-        fecha.setMaxWidth(375);
 
         ComboBox<String> tipoVisita = new ComboBox<>();
         
@@ -116,9 +119,23 @@ public class App extends Application {
         formulario.add(contenedorBotones, 0, 8, 2, 1);
 
         root.setPadding(new Insets(10));
-        root.getChildren().add(formulario);
 
-        Scene scene = new Scene(root, 400, 380);
+        TableView tablaVisitantes = new TableView();
+
+        TableColumn columnaNombre = new TableColumn("Nombre");
+        TableColumn columnaCedula = new TableColumn("Cédula");
+        TableColumn columnaTelefono = new TableColumn("Teléfono");
+
+        tablaVisitantes.getColumns().add(columnaNombre);
+        tablaVisitantes.getColumns().add(columnaCedula);
+        tablaVisitantes.getColumns().add(columnaTelefono);
+
+        tablaVisitantes.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
+        tablaVisitantes.setPrefHeight(180);
+
+        root.getChildren().addAll(contenedorTitulo, formulario, tablaVisitantes);
+
+        Scene scene = new Scene(root, 400, 550);
 
         primaryStage.setTitle("Registro de Visitantes");
         primaryStage.setScene(scene);
