@@ -1,13 +1,17 @@
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 
 public class App extends Application {
     public static void main(String[] args) throws Exception {
@@ -17,6 +21,11 @@ public class App extends Application {
     @ Override
     public void start(Stage primaryStage) {
         VBox root = new VBox(10);
+
+        GridPane formulario = new GridPane();
+        formulario.setPadding(new Insets(15));
+        formulario.setHgap(10);
+        formulario.setVgap(10);
 
         Label labelNombre = new Label("Nombre:");
         TextField nombre = new TextField();
@@ -69,20 +78,50 @@ public class App extends Application {
         radioButtonPasaporte.setToggleGroup(documentos);
         radioButtonCarnet.setToggleGroup(documentos);
 
-        root.getChildren().addAll(labelNombre, nombre);
-        root.getChildren().addAll(labelCedula, cedula);
-        root.getChildren().addAll(labelTelefono, telefono);
-        root.getChildren().addAll(labelMotivoVisita, motivoVisita);
-        root.getChildren().addAll(labelPersonaVisitar, personaVisitar);
-        root.getChildren().addAll(labelFecha, fecha);
-        root.getChildren().addAll(labelTipoVisitante, tipoVisita);
-        root.getChildren().addAll(labelDocumento, radioButtonCedula, radioButtonPasaporte, radioButtonCarnet);
+        HBox contenedorDocumentos = new HBox(10);
+        contenedorDocumentos.getChildren().addAll(radioButtonCedula, radioButtonPasaporte, radioButtonCarnet);
 
-        Scene scene = new Scene(root, 400, 600);
+        Button botonGuardar = new Button("Registrar");
+        Button botonLimpiar = new Button("Limpiar");
+        Button botonCancelar = new Button("Cancelar");
+
+        HBox contenedorBotones = new HBox(10);
+        contenedorBotones.setAlignment(Pos.CENTER);
+        contenedorBotones.getChildren().addAll(botonGuardar, botonLimpiar, botonCancelar);
+
+        formulario.add(labelNombre, 0, 0);
+        formulario.add(nombre, 1, 0);
+
+        formulario.add(labelCedula, 0, 1);
+        formulario.add(cedula, 1, 1);
+
+        formulario.add(labelTelefono, 0, 2);
+        formulario.add(telefono, 1, 2);
+
+        formulario.add(labelMotivoVisita, 0, 3);
+        formulario.add(motivoVisita, 1, 3);
+
+        formulario.add(labelPersonaVisitar, 0, 4);
+        formulario.add(personaVisitar, 1, 4);
+
+        formulario.add(labelFecha, 0, 5);
+        formulario.add(fecha, 1, 5);
+
+        formulario.add(labelTipoVisitante, 0, 6);
+        formulario.add(tipoVisita, 1, 6);
+
+        formulario.add(labelDocumento, 0, 7);
+        formulario.add(contenedorDocumentos, 1, 7);
+
+        formulario.add(contenedorBotones, 0, 8, 2, 1);
+
+        root.setPadding(new Insets(10));
+        root.getChildren().add(formulario);
+
+        Scene scene = new Scene(root, 400, 380);
 
         primaryStage.setTitle("Registro de Visitantes");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 }
-
