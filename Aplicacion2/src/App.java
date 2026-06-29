@@ -29,7 +29,7 @@ public class App extends Application {
         formulario.setVgap(10);
 
         Label titulo = new Label("Sistema de Inventario");
-        titulo.setStyle("-fx-font-size:14px; -fx-fonx-weight:bold;");
+        titulo.setStyle("-fx-font-size:14px; -fx-font-weight:bold;");
         
         HBox contenedorTitulo = new HBox();
         contenedorTitulo.setAlignment(Pos.CENTER);
@@ -110,8 +110,6 @@ public class App extends Application {
         formulario.add(labelEspecificacionesProducto, 0, 7);
         formulario.add(contenedorEspecificacionesProducto, 1, 7);
 
-        formulario.add(contenedorBotones, 0, 8, 2, 1);
-
         root.setPadding(new Insets(10));
 
         TableView tablaProducto = new TableView();
@@ -133,7 +131,7 @@ public class App extends Application {
         tablaProducto.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
         tablaProducto.setPrefHeight(180);
 
-        root.getChildren().addAll(contenedorTitulo, formulario, tablaProducto);
+        root.getChildren().addAll(contenedorTitulo, formulario, tablaProducto, contenedorBotones);
 
         Scene scene = new Scene(root, 650, 580);
 
