@@ -30,7 +30,7 @@ public class App extends Application {
         formulario.setVgap(10);
 
         Label titulo = new Label("Registro de Visitantes");
-        titulo.setStyle("-fx-font-size:14px; -fx-fonx-weight:bold;");
+        titulo.setStyle("-fx-font-size:14px; -fx-font-weight:bold;");
         
         HBox contenedorTitulo = new HBox();
         contenedorTitulo.setAlignment(Pos.CENTER);
@@ -116,8 +116,6 @@ public class App extends Application {
         formulario.add(labelDocumento, 0, 7);
         formulario.add(contenedorDocumentos, 1, 7);
 
-        formulario.add(contenedorBotones, 0, 8, 2, 1);
-
         root.setPadding(new Insets(10));
 
         TableView tablaVisitantes = new TableView();
@@ -133,7 +131,7 @@ public class App extends Application {
         tablaVisitantes.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
         tablaVisitantes.setPrefHeight(180);
 
-        root.getChildren().addAll(contenedorTitulo, formulario, tablaVisitantes);
+        root.getChildren().addAll(contenedorTitulo, formulario, tablaVisitantes, contenedorBotones);
 
         Scene scene = new Scene(root, 400, 550);
 
