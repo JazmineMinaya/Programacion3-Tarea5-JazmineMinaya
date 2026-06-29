@@ -37,7 +37,11 @@ public class App extends Application {
         contenedorTitulo.getChildren().add(titulo);
 
         Rectangle fotoPerfil = new Rectangle(75, 75);
-        fotoPerfil.setStyle("-fx-fill: lightgray; -fx-stroke: black;");   
+        fotoPerfil.setStyle("-fx-fill: lightgray; -fx-stroke: black;");  
+        
+        HBox contenedorFoto = new HBox();
+        contenedorFoto.setAlignment(Pos.CENTER);
+        contenedorFoto.getChildren().add(fotoPerfil);
 
         Label labelMatricula = new Label("Matrícula:");
         TextField matricula = new TextField();
@@ -126,7 +130,7 @@ public class App extends Application {
 
         observaciones.setPrefWidth(350);
 
-        root.getChildren().addAll(contenedorTitulo, fotoPerfil, formulario, labelListaMaterias, listaMaterias, labelObservaciones, observaciones, contenedorBotones);
+        root.getChildren().addAll(contenedorTitulo, contenedorFoto, formulario, labelListaMaterias, listaMaterias, labelObservaciones, observaciones, contenedorBotones);
 
         Scene scene = new Scene(root, 470, 700);
 
