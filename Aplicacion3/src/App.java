@@ -10,6 +10,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.shape.Rectangle;
+
 
 public class App extends Application {
     public static void main(String[] args) throws Exception {
@@ -26,11 +30,14 @@ public class App extends Application {
         formulario.setVgap(10);
 
         Label titulo = new Label("Perfil de Estudiante");
-        titulo.setStyle("-fx-font-size:14px; -fx-fonx-weight:bold;");
+        titulo.setStyle("-fx-font-size:14px; -fx-font-weight:bold;");
 
         HBox contenedorTitulo = new HBox();
         contenedorTitulo.setAlignment(Pos.CENTER);
         contenedorTitulo.getChildren().add(titulo);
+
+        Rectangle fotoPerfil = new Rectangle(75, 75);
+        fotoPerfil.setStyle("-fx-fill: lightgray; -fx-stroke: black;");   
 
         Label labelMatricula = new Label("Matrícula:");
         TextField matricula = new TextField();
@@ -72,7 +79,7 @@ public class App extends Application {
         contenedorBotones.setAlignment(Pos.CENTER);
         contenedorBotones.getChildren().addAll(botonGuardar, botonActualizar, botonImprimir);
 
-        double ancho = 350;
+        int ancho = 350;
 
         matricula.setPrefWidth(ancho);
         nombre.setPrefWidth(ancho);
@@ -103,13 +110,25 @@ public class App extends Application {
         formulario.add(labelSemestre, 0, 6);
         formulario.add(semestre, 1, 6);
 
-        formulario.add(contenedorBotones, 0, 8, 2, 1);
-
         root.setPadding(new Insets(10));
 
-        root.getChildren().addAll(contenedorTitulo, formulario);
+        Label labelListaMaterias = new Label("Materias inscritas:");
+        ListView<String> listaMaterias = new ListView<>();
+        listaMaterias.setPlaceholder(new Label("No hay materias inscritas"));
 
-        Scene scene = new Scene(root, 470, 580);
+        listaMaterias.setPrefHeight(120);
+
+        Label labelObservaciones = new Label("Observaciones:");
+
+        TextArea observaciones = new TextArea();
+        observaciones.setPromptText("Escriba las observaciones");
+        observaciones.setPrefRowCount(4);
+
+        observaciones.setPrefWidth(350);
+
+        root.getChildren().addAll(contenedorTitulo, fotoPerfil, formulario, labelListaMaterias, listaMaterias, labelObservaciones, observaciones, contenedorBotones);
+
+        Scene scene = new Scene(root, 470, 700);
 
         primaryStage.setTitle("Perfil de Estudiante");
         primaryStage.setScene(scene);
